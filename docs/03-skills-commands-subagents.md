@@ -111,16 +111,16 @@ command file is fine for a quick one-shot prompt.
 
 ```markdown
 ---
-description: Scaffold a new REST endpoint with handler, route, and test.
+description: Scaffold a new REST endpoint with router module, registration, and test.
 argument-hint: "[resource-name]"
 ---
 
 Create a new endpoint for `$1`:
 
-1. Handler in `src/api/handlers/$1.ts` following the pattern in `users.ts`.
-2. Register the route in `src/api/router.ts`.
-3. A test in `src/api/handlers/$1.test.ts` covering the happy path and a 400.
-4. Run `pnpm test src/api/handlers/$1.test.ts` and fix failures.
+1. Router module in `src/api/routes/$1.py` following the pattern in `users.py`.
+2. Register the router in `src/api/main.py`.
+3. A test in `tests/api/test_$1.py` covering the happy path and a 422.
+4. Run `uv run pytest tests/api/test_$1.py` and fix failures.
 ```
 
 The same string substitutions (`$ARGUMENTS`, `$1`, `` !`cmd` ``) work here. See
@@ -147,7 +147,7 @@ tools: Bash, Read, Grep, Glob
 ---
 
 You run and triage tests. Steps:
-1. Run the full suite with `pnpm test`.
+1. Run the full suite with `uv run pytest`.
 2. For each failure, read the relevant source and test files and determine the cause.
 3. Report a concise summary: what failed, why, and the smallest fix. Do NOT fix
    code yourself unless asked.

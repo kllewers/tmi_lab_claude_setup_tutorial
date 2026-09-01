@@ -19,7 +19,7 @@ that make up a project setup, and the habits that keep sessions cheap.
 | **[docs/03-skills-commands-subagents.md](docs/03-skills-commands-subagents.md)** | The three extension mechanisms — skills, slash commands, and subagents — what each is for, and how to write them. |
 | **[docs/04-permissions-and-safety.md](docs/04-permissions-and-safety.md)** | Permission modes, allow/ask/deny rules, hooks, sandboxing, secrets hygiene, and avoiding destructive actions. |
 | **[docs/05-credit-efficiency.md](docs/05-credit-efficiency.md)** | The core of this repo: how the context window and prompt caching actually work, and the concrete habits that reduce spend. |
-| **[docs/recording-script.md](docs/recording-script.md)** | A full narration + demo script for recording a ~40-minute screencast walkthrough of this material, with a prep checklist and shot list. |
+| **[docs/recording-script.md](docs/recording-script.md)** | A full narration + demo script for recording a ~20–25 minute screencast walkthrough of this material, with a prep checklist and shot list. |
 | **[examples/](examples/)** | A working scaffold you can copy into a real project: a commented `CLAUDE.md`, `settings.json`, `.mcp.json`, a skill, a slash command, and a subagent. |
 
 If you read nothing else, read **[docs/05-credit-efficiency.md](docs/05-credit-efficiency.md)** and the
@@ -53,7 +53,7 @@ Everything in this tutorial is an application of that one idea.
 ## Quick start
 
 ```bash
-# 1. Install (Node 18+ required)
+# 1. Install the Claude Code CLI (Node 18+ for this path; your project can be any language)
 npm install -g @anthropic-ai/claude-code
 
 # 2. From your project directory, start a session

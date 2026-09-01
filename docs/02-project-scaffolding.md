@@ -50,7 +50,7 @@ Facts that are true in *every* session and that Claude can't reliably infer from
 - **Instructions that only matter for one part of the tree** → a path-scoped rule (below).
 - **Anything Claude can derive by reading the code** — directory dumps, dependency lists,
   a restatement of your framework's docs. This is pure context tax.
-- **Things that must happen deterministically** ("run prettier after every edit") → a
+- **Things that must happen deterministically** ("run the formatter after every edit") → a
   [hook](04-permissions-and-safety.md).
 
 ### How to write it
@@ -58,8 +58,8 @@ Facts that are true in *every* session and that Claude can't reliably infer from
 - **Target under 200 lines.** Longer files consume more context *and* measurably reduce
   how well Claude follows them.
 - Use markdown headers and bullets. Claude scans structure like a person does.
-- Be concrete and verifiable: "Use 2-space indentation" beats "format code properly";
-  "Run `pnpm test` before committing" beats "test your changes."
+- Be concrete and verifiable: "Use 4-space indentation" beats "format code properly";
+  "Run `uv run pytest` before committing" beats "test your changes."
 - Remove contradictions. If two lines disagree, Claude picks one arbitrarily.
 
 ### Getting started and maintaining it
@@ -94,12 +94,12 @@ To load instructions *only when relevant*, use `.claude/rules/` with `paths:` fr
 ```markdown
 ---
 paths:
-  - "src/api/**/*.ts"
+  - "src/api/**/*.py"
 ---
 
 # API rules
-- Every endpoint validates its input.
-- Use the standard error envelope from `src/lib/errors.ts`.
+- Every endpoint validates its input with a Pydantic model.
+- Use the standard error envelope from `src/lib/errors.py`.
 ```
 
 That rule enters context only once Claude touches a matching file. Rules *without* a
@@ -132,7 +132,7 @@ yourself unless you created it by hand.
 ### What to put in the committed `settings.json`
 
 - **`permissions.allow`** — your safe, frequent commands so teammates aren't prompted for
-  `npm test` fifty times a day.
+  `uv run pytest` fifty times a day.
 - **`permissions.deny`** — reads of secret files; anything genuinely off-limits.
 - **`hooks`** — deterministic automation (formatter, guard rails).
 - **`env`** — environment variables the project needs (not secrets).

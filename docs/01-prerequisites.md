@@ -7,7 +7,10 @@ afterwards is just scaffolding.
 
 ## 1.1 Install the CLI
 
-Claude Code is a Node package. You need **Node.js 18 or newer**.
+Claude Code itself is distributed as a Node package, so the quickest path needs
+**Node.js 18 or newer**. This has nothing to do with your project's language — the
+`examples/` in this repo are a **Python** project, and Claude Code works the same on any
+stack.
 
 ```bash
 node --version          # must be >= v18
@@ -17,6 +20,9 @@ claude --version        # confirm it's on your PATH
 
 If you don't manage Node yourself, install it via [nvm](https://github.com/nvm-sh/nvm)
 (`nvm install --lts`) or Homebrew (`brew install node`). Avoid the system Node on macOS.
+
+If you'd rather not have Node at all, Claude Code also ships a standalone native
+installer — check the official install docs for the current one-line command.
 
 > The `claude` binary is the same program whether you run it in a plain terminal, the VS
 > Code integrated terminal, or the JetBrains terminal. The VS Code *extension* adds a UI

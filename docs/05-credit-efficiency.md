@@ -55,7 +55,7 @@ expensive to thrash.
 
 ### 3. Point at files. Don't make it search from zero.
 
-"The bug is in `src/auth/session.ts`, probably in `refreshToken`" costs a few hundred
+"The bug is in `src/auth/session.py`, probably in `refresh_token`" costs a few hundred
 tokens. "There's a bug somewhere in auth" costs a whole exploration phase — greps, reads
 of a dozen files, dead ends — all of which stay in context for the rest of the session.
 You almost always know roughly where things are. Say so.
@@ -165,14 +165,14 @@ the end of a big task. You'll quickly learn which of your workflows are expensiv
 - Continue in the session where you spent the morning on an unrelated refactor (huge context).
 - "Add rate limiting somewhere in auth." Claude greps the codebase, reads 15 files.
 - It writes an implementation using a library you don't use.
-- "No, we use `rate-limiter-flexible`." It re-reads, rewrites.
+- "No, we use `slowapi`." It re-reads, rewrites.
 - Meanwhile every turn re-sends the morning's refactor + 15 file reads + two implementations.
 
 **Efficient version:**
 - `/clear`.
-- Plan mode (Shift+Tab): "Add rate limiting to the login handler in
-  `src/api/handlers/auth.ts`. Use `rate-limiter-flexible` (already a dependency, see
-  `src/lib/ratelimit.ts` for our wrapper). 5 attempts / 15 min per IP, return 429 with our
+- Plan mode (Shift+Tab): "Add rate limiting to the login route in
+  `src/api/routes/auth.py`. Use `slowapi` (already a dependency, see
+  `src/lib/ratelimit.py` for our wrapper). 5 attempts / 15 min per IP, return 429 with our
   standard error envelope. Add a test."
 - Review the plan, approve.
 - Claude edits two files, adds a test, runs it.

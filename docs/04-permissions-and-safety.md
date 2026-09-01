@@ -41,8 +41,8 @@ In `settings.json`:
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "Bash(npm run lint)",
-      "Bash(npm run test:*)",
+      "Bash(uv run ruff check .)",
+      "Bash(uv run pytest:*)",
       "Bash(git status)",
       "Bash(git diff:*)",
       "Read(src/**)"
@@ -69,8 +69,8 @@ In `settings.json`:
 
 | Pattern | Matches |
 | --- | --- |
-| `Bash(npm run test)` | Exactly that command |
-| `Bash(npm run test:*)` | That command with any arguments |
+| `Bash(uv run pytest)` | Exactly that command |
+| `Bash(uv run pytest:*)` | That command with any arguments |
 | `Bash(git diff:*)` | `git diff` with any arguments |
 | `Read(src/**)` / `Edit(src/**)` | File reads/edits under `src/` |
 | `Read(./.env)` | A specific file (relative to the project) |
@@ -132,7 +132,7 @@ Common events:
 | `Stop` / `SubagentStop` | Turn / subagent ends | Notify, log, run a final check |
 | `PreCompact` | Before compaction | Persist notes you don't want summarized away |
 
-Example — format TypeScript after every edit (`settings.json`):
+Example — format Python after every edit (`settings.json`):
 
 ```json
 {
@@ -141,7 +141,7 @@ Example — format TypeScript after every edit (`settings.json`):
       {
         "matcher": "Edit|Write",
         "hooks": [
-          { "type": "command", "command": "prettier --write \"$CLAUDE_FILE_PATHS\" 2>/dev/null || true" }
+          { "type": "command", "command": "printf '%s' \"$CLAUDE_FILE_PATHS\" | grep -qE '\\.py$' && uv run ruff format $CLAUDE_FILE_PATHS 2>/dev/null || true" }
         ]
       }
     ]
@@ -158,7 +158,7 @@ Example — block edits to a generated directory (`PreToolUse`, exit non-zero to
       {
         "matcher": "Edit|Write",
         "hooks": [
-          { "type": "command", "command": "case \"$CLAUDE_FILE_PATHS\" in *\"/generated/\"*) echo 'generated/ is off limits' >&2; exit 2 ;; esac" }
+          { "type": "command", "command": "case \"$CLAUDE_FILE_PATHS\" in *\"/_generated/\"*) echo '_generated/ is off limits' >&2; exit 2 ;; esac" }
         ]
       }
     ]
@@ -193,9 +193,9 @@ Commit this to `.claude/settings.json` and adjust the command names to your stac
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "Bash(npm run lint)",
-      "Bash(npm run test:*)",
-      "Bash(npm run typecheck)",
+      "Bash(uv run ruff check .)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run mypy src)",
       "Bash(git status)",
       "Bash(git diff:*)",
       "Bash(git log:*)"
