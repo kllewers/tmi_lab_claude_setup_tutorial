@@ -26,6 +26,3 @@ venv/
 *.egg-info/
 build/
 dist/
-
-# Added outside this task — remove this line if you want the script committed
-docs/recording-script.md

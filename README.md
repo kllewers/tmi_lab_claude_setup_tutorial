@@ -19,7 +19,7 @@ that make up a project setup, and the habits that keep sessions cheap.
 | **[docs/03-skills-commands-subagents.md](docs/03-skills-commands-subagents.md)** | The three extension mechanisms — skills, slash commands, and subagents — what each is for, and how to write them. |
 | **[docs/04-permissions-and-safety.md](docs/04-permissions-and-safety.md)** | Permission modes, allow/ask/deny rules, hooks, sandboxing, secrets hygiene, and avoiding destructive actions. |
 | **[docs/05-credit-efficiency.md](docs/05-credit-efficiency.md)** | The core of this repo: how the context window and prompt caching actually work, and the concrete habits that reduce spend. |
-| **[docs/recording-script.md](docs/recording-script.md)** | A full narration + demo script for recording a ~20–25 minute screencast walkthrough of this material, with a prep checklist and shot list. |
+| **[docs/cheatsheet.md](docs/cheatsheet.md)** | Talking points for a ~10-minute lab walkthrough: the flow, plus the five pillars — CLAUDE.md, rules, skills, hooks, settings.json. |
 | **[examples/](examples/)** | A working scaffold you can copy into a real project: a commented `CLAUDE.md`, `settings.json`, `.mcp.json`, a skill, a slash command, and a subagent. |
 
 If you read nothing else, read **[docs/05-credit-efficiency.md](docs/05-credit-efficiency.md)** and the
