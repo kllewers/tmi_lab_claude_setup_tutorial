@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(uv sync)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run ruff check .)",
+      "Bash(uv run ruff check --fix .)",
+      "Bash(uv run ruff format .)",
+      "Bash(uv run mypy src)",
+      "Bash(uv run uvicorn src.api.main:app --reload)",
+      "Bash(uv run python -m scripts.gen_client)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(docker compose up -d db)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./**/*.pem)",
+      "Edit(./src/_generated/**)",
+      "Write(./src/_generated/**)"
+    ]
+  },
+  "env": {
+    "TZ": "UTC",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '%s' \"$CLAUDE_FILE_PATHS\" | grep -qE '\\.py$' && uv run ruff format $CLAUDE_FILE_PATHS 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}

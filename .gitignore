@@ -1,0 +1,31 @@
+# Claude Code — personal / machine-local, never commit
+.claude/settings.local.json
+**/.claude/settings.local.json
+CLAUDE.local.md
+**/CLAUDE.local.md
+
+# Secrets
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+
+# Python (the examples/ scaffold describes a Python project)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Added outside this task — remove this line if you want the script committed
+docs/recording-script.md
