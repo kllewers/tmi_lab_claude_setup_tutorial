@@ -125,7 +125,7 @@ Everything in `examples/` is a working version of step 4 you can copy in.
 
 ---
 
-## 9:00 · Which bucket does this go in? (30s)
+## Which bucket does this go in?
 
 | The thing | Goes in |
 | --- | --- |
@@ -137,7 +137,7 @@ Everything in `examples/` is a working version of step 4 you can copy in.
 
 ---
 
-## 9:30 · Close — the 10-minute starter (30s)
+## Close — the 10-minute starter
 
 > "You don't need all of this on day one."
 
